@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
+                           http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/task
+                           http://www.springframework.org/schema/task/spring-task-3.1.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- RabbitMQ连接池 -->
+    <task:executor id="amqpConnectionTaskExecutor" pool-size="5"/>
+
+    <!-- RabbitMQ连接器 -->
+    <rabbit:connection-factory id="connectionFactory" executor="amqpConnectionTaskExecutor" host="127.0.0.1" port="5672" username="admin" password="admin"
+                               virtual-host="/kl"/>
+
+    <bean id="myService" class="com.kl.client.MQClientProxyFactoryBean">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="serviceInterface" value="com.kl.api.Service"/>
+    </bean>
+
+</beans>
