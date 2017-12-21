@@ -34,10 +34,10 @@
 
 9）生产者得到最终结果。
 
-客户端配置：
+> 客户端配置：
 
-
-    <!-- RabbitMQ连接池 -->
+```
+   <!-- RabbitMQ连接池 -->
     <task:executor id="amqpConnectionTaskExecutor" pool-size="5"/>
 
     <!-- RabbitMQ连接器 -->
@@ -48,9 +48,11 @@
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="serviceInterface" value="com.kl.api.Service"/>
     </bean>
-服务端配置：
+```
 
+> 服务端配置：
 
+```
    <!-- RabbitMQ连接池 -->
     <task:executor id="amqpConnectionTaskExecutor" pool-size="5"/>
 
@@ -63,9 +65,10 @@
         <constructor-arg index="0" ref="ServiceImpl"/>
         <property name="connectionFactory" ref="connectionFactory"/>
     </bean>
+```
+> 测试代码及图例
 
-测试代码及图例
-
+```
     /**
      * 暴力测试
      * @param args
@@ -97,11 +100,9 @@
             return null;
         }
     }
+```
+> 测试图例
 
-
-以下为测试图例
-输入图片说明
-输入图片说明
-输入图片说明
-
-
+![输入图片说明](https://gitee.com/uploads/images/2017/1221/092323_3bdf8a69_492218.png "屏幕截图.png")
+![输入图片说明](https://gitee.com/uploads/images/2017/1221/092348_a2418231_492218.png "屏幕截图.png")
+![输入图片说明](https://gitee.com/uploads/images/2017/1221/092412_b107c134_492218.png "屏幕截图.png")
