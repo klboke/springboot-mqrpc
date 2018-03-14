@@ -1,5 +1,8 @@
 #springboot-mqrpc
 
+> 欢迎加入开源技术QQ群一起交流：613025121
+
+
 通过spring +RabbitMQ+hessian的Rpc远程调用来理解RPC调用原理
 
 1.对Rpc的简单阐述
